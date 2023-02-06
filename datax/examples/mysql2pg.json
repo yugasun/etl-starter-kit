@@ -1,0 +1,68 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 1
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "mysqlreader",
+          "parameter": {
+            "username": "etl",
+            "password": "Admin@123",
+            "splitPk": "id",
+            "where": "id <= 20",
+            "column": [
+              "*"
+            ],
+            "connection": [
+              {
+                "jdbcUrl": [
+                  "jdbc:mysql://127.0.0.1:3306/etl?useSSL=false"
+                ],
+                "table": [
+                  "products"
+                ]
+              }
+            ]
+          }
+        },
+        "writer": {
+          "name": "postgresqlwriter",
+          "parameter": {
+            "username": "etl",
+            "password": "Admin@123",
+            "column": [
+              "*"
+            ],
+            "preSql": [
+              "delete from products where 1=1"
+            ],
+            "connection": [
+              {
+                "jdbcUrl": "jdbc:postgresql://127.0.0.1:5433/etl",
+                "table": [
+                  "products"
+                ]
+              }
+            ]
+          }
+        },
+        "transformer": [
+          {
+            "name": "dx_substr",
+            "parameter": {
+              "columnIndex": 1,
+              "paras": [
+                "4",
+                "4"
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

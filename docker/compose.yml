@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+  adminer:
+    image: adminer:4.8.1
+    restart: always
+    ports:
+      - "8090:8080"
+
+  # Refer to: https://hub.docker.com/_/mysql
+  mysql:
+    image: mysql:8.0
+    container_name: etl-mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Admin@123
+      MYSQL_USER: etl
+      MYSQL_PASSWORD: Admin@123
+      MYSQL_DATABASE: etl
+    ports:
+      - "3306:3306"
+    volumes:
+      - "./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d"
+
+  # Refer to: https://hub.docker.com/_/postgres
+  postgres:
+    image: postgres:11.5
+    container_name: etl-postgres
+    restart: always
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_USER: etl
+      POSTGRES_PASSWORD: Admin@123
+      POSTGRES_DB: etl
+    ports:
+      - "5433:5432"

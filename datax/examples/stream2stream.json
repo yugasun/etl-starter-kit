@@ -1,0 +1,85 @@
+{
+  "job": {
+    "content": [
+      {
+        "reader": {
+          "name": "streamreader",
+          "parameter": {
+            "column": [
+              {
+                "value": "dataxTest",
+                "type": "string"
+              },
+              {
+                "value": 19890604,
+                "type": "long"
+              },
+              {
+                "value": "12345678",
+                "type": "string"
+              },
+              {
+                "value": "1989-06-04 00:00:00",
+                "type": "date"
+              },
+              {
+                "value": true,
+                "type": "bool"
+              },
+              {
+                "value": "test",
+                "type": "bytes"
+              }
+            ],
+            "sliceRecordCount": 2
+          }
+        },
+        "writer": {
+          "name": "streamwriter",
+          "parameter": {
+            "print": true,
+            "encoding": "UTF-8"
+          }
+        },
+        "transformer": [
+          {
+            "name": "dx_substr",
+            "parameter": {
+              "columnIndex": 0,
+              "paras": [
+                "0",
+                "5"
+              ]
+            }
+          },
+          {
+            "name": "dx_replace",
+            "parameter": {
+              "columnIndex": 2,
+              "paras": [
+                "3",
+                "4",
+                "****"
+              ]
+            }
+          },
+          {
+            "name": "dx_digest",
+            "parameter": {
+              "columnIndex": 5,
+              "paras": [
+                "md5",
+                "toLowerCase"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "setting": {
+      "speed": {
+        "channel": 5
+      }
+    }
+  }
+}
