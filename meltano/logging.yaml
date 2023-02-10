@@ -1,0 +1,28 @@
+version: 1
+disable_existing_loggers: false
+
+formatters:
+  default: # use a format similar to default generic python logging format
+    format: "[%(asctime)s] [%(process)d|%(threadName)10s|%(name)s] [%(levelname)s] %(message)s"
+  structured_plain:
+    (): meltano.core.logging.console_log_formatter
+    colors: True
+  json:
+    (): meltano.core.logging.json_formatter
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: INFO
+    formatter: structured_plain
+    stream: "ext://sys.stderr"
+  file:
+    class: logging.FileHandler
+    level: INFO
+    filename: meltano.log
+    formatter: json
+
+root:
+  level: DEBUG
+  propagate: yes
+  handlers: [console, file]

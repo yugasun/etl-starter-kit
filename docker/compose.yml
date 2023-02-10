@@ -35,3 +35,5 @@ services:
       POSTGRES_DB: etl
     ports:
       - "5433:5432"
+    volumes:
+      - "./postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d"

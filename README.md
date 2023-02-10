@@ -12,7 +12,9 @@ cd docker && docker-compose up -d
 
 - [datax](./datax/)
 - [kettle](./kettle/)
+- [meltano](./meltano)
 - [dbt](./dbt)
+- [airbyte](./airbyte)
 
 ## License
 
