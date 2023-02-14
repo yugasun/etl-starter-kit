@@ -15,6 +15,34 @@ SET
 
 USE `etl`;
 
+/* Create table for tpcc test */
+DROP TABLE IF EXISTS `customer`;
+CREATE TABLE `customer` (
+  `c_w_id` int NOT NULL,
+  `c_d_id` int NOT NULL,
+  `c_id` int NOT NULL,
+  `c_discount` decimal(4, 4) NOT NULL,
+  `c_credit` char(2) NOT NULL,
+  `c_last` varchar(16) NOT NULL,
+  `c_first` varchar(16) NOT NULL,
+  `c_credit_lim` decimal(12, 2) NOT NULL,
+  `c_balance` decimal(12, 2) NOT NULL,
+  `c_ytd_payment` float NOT NULL,
+  `c_payment_cnt` int NOT NULL,
+  `c_delivery_cnt` int NOT NULL,
+  `c_street_1` varchar(20) NOT NULL,
+  `c_street_2` varchar(20) NOT NULL,
+  `c_city` varchar(20) NOT NULL,
+  `c_state` char(2) NOT NULL,
+  `c_zip` char(9) NOT NULL,
+  `c_phone` char(16) NOT NULL,
+  `c_since` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `c_middle` char(2) NOT NULL,
+  `c_data` varchar(500) NOT NULL,
+  PRIMARY KEY (`c_w_id`, `c_d_id`, `c_id`),
+  KEY `idx_customer_name` (`c_w_id`, `c_d_id`, `c_last`, `c_first`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+
 DROP TABLE IF EXISTS `offices`;
 
 CREATE TABLE `offices` (

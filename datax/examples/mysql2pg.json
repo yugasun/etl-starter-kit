@@ -2,7 +2,7 @@
   "job": {
     "setting": {
       "speed": {
-        "channel": 1
+        "channel": 4
       }
     },
     "content": [
@@ -42,7 +42,7 @@
             ],
             "connection": [
               {
-                "jdbcUrl": "jdbc:postgresql://127.0.0.1:5433/etl",
+                "jdbcUrl": "jdbc:postgresql://127.0.0.1:5432/etl",
                 "table": [
                   "products"
                 ]

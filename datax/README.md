@@ -66,6 +66,29 @@ use `setting.errorLimit` to control error check:
 },
 ```
 
+### Notice!!!
+
+If config `speed.record`, datax will run with a bug, we can config it like below:
+
+```json
+"core": {
+  "transport": {
+    "channel": {
+      "speed": {
+        "record": 10000
+      }
+    }
+  }
+},
+"job": {
+  "setting": {
+    "speed": {
+      "channel": 2
+    }
+  },
+}
+```
+
 ## Usage
 
 ### 1. Stream to Stream

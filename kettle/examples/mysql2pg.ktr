@@ -505,7 +505,7 @@
     <type>POSTGRESQL</type>
     <access>Native</access>
     <database>etl</database>
-    <port>5433</port>
+    <port>5432</port>
     <username>etl</username>
     <password>Encrypted 2be98afc86aa7f2a5af14a77efec3fd89</password>
     <servername/>
@@ -526,7 +526,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>5433</attribute>
+        <attribute>5432</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -785,7 +785,7 @@
       <schema_name/>
     </partitioning>
     <connection>etl@mysql</connection>
-    <sql>SELECT * FROM products WHERE id &lt;= ${param1};</sql>
+    <sql>SELECT * FROM products;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

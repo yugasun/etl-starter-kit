@@ -34,6 +34,6 @@ services:
       POSTGRES_PASSWORD: Admin@123
       POSTGRES_DB: etl
     ports:
-      - "5433:5432"
+      - "5432:5432"
     volumes:
       - "./postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d"

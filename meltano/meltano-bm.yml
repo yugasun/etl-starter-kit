@@ -1,0 +1,42 @@
+version: 1
+default_environment: dev
+project_id: d9e0d480-5c7e-4dd9-9ced-1d80cb54fb66
+environments:
+  - name: dev
+  - name: staging
+  - name: prod
+plugins:
+  extractors:
+    - name: tap-mysql
+      variant: transferwise
+      pip_url: pipelinewise-tap-mysql
+      config:
+        host: localhost
+        port: 3306
+        user: etl
+        database: etl
+        ssl: false
+        engine: mysql
+        default_replication_method: FULL_TABLE
+      select:
+        - etl-customer.*
+      metadata:
+        "*":
+          # replication-key: id
+          replication-method: FULL_TABLE
+  loaders:
+    - name: target-postgres
+      variant: transferwise
+      pip_url: pipelinewise-target-postgres
+      config:
+        host: localhost
+        port: 5432
+        user: etl
+        dbname: etl # Notice: it is dbname not database
+        default_target_schema: public
+        ssl: false
+        add_metadata_columns: false
+jobs:
+  - name: mysql2pg
+    tasks:
+      - tap-mysql target-postgres

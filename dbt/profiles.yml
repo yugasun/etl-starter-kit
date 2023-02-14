@@ -6,7 +6,7 @@ jaffle_shop:
       host: localhost
       user: etl
       password: Admin@123
-      port: 5433
+      port: 5432
       dbname: etl
       schema: public
       threads: 4

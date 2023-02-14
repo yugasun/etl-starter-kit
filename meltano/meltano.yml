@@ -61,7 +61,7 @@ plugins:
       pip_url: pipelinewise-target-postgres
       config:
         host: localhost
-        port: 5433
+        port: 5432
         user: etl
         dbname: etl # Notice: it is dbname not database
         default_target_schema: public
