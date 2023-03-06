@@ -1,17 +1,10 @@
 -- Adminer 4.8.1 MySQL 8.0.30 dump
 CREATE DATABASE IF NOT EXISTS `etl`;
 
-SET
-  NAMES utf8;
-
-SET
-  time_zone = '+00:00';
-
-SET
-  foreign_key_checks = 0;
-
-SET
-  sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
+SET NAMES utf8;
+SET time_zone = '+00:00';
+SET foreign_key_checks = 0;
+SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 USE `etl`;
 

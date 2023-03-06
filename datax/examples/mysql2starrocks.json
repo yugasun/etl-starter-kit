@@ -1,0 +1,74 @@
+{
+  "job": {
+    "content": [
+      {
+        "reader": {
+          "parameter": {
+            "password": "Admin@123",
+            "connection": [
+              {
+                "querySql": [
+                  "SELECT `id`,`productCode`,`productName`,`productLine`,`productScale`,`productVendor`,`productDescription`,`quantityInStock`,`buyPrice`,`MSRP` FROM products "
+                ],
+                "jdbcUrl": [
+                  "jdbc:mysql://127.0.0.1:3306/etl?useUnicode=yes&useCursorFetch=true&useSSL=false&serverTimezone=Asia%2FShanghai&useCompression=true&characterEncoding=utf8"
+                ]
+              }
+            ],
+            "dataxName": "mysql2startrocks",
+            "username": "etl"
+          },
+          "name": "mysqlreader"
+        },
+        "writer": {
+          "parameter": {
+            "username": "root",
+            "password": "Admin@123",
+            "database": "sr_hub",
+            "column": [
+              "id",
+              "productCode",
+              "productName",
+              "productLine",
+              "productScale",
+              "productVendor",
+              "productDescription",
+              "quantityInStock",
+              "buyPrice",
+              "MSRP"
+            ],
+            "preSql": [],
+            "postSql": [],
+            "loadProps": {
+              "column_separator": "\\x01",
+              "row_delimiter": "\\x02"
+            },
+            "connection": [
+              {
+                "selectedDatabase": "sr_hub",
+                "jdbcUrl": "jdbc:mysql://127.0.0.1:9030/",
+                "table": [
+                  "products"
+                ]
+              }
+            ],
+            "loadUrl": [
+              "127.0.0.1:8030"
+            ]
+          },
+          "name": "starrockswriter"
+        },
+        "dataxName": "mysql2startrocks"
+      }
+    ],
+    "setting": {
+      "errorLimit": {
+        "record": 1,
+        "percentage": 0.02
+      },
+      "speed": {
+        "channel": 3
+      }
+    }
+  }
+}

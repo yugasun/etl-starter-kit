@@ -27,10 +27,4 @@ CREATE TABLE "public"."customer" (
     "c_data" character varying(500) NOT NULL,
     CONSTRAINT "customer_pkey" PRIMARY KEY ("c_w_id", "c_d_id", "c_id")
 ) WITH (oids = false);
-
-CREATE INDEX "idx_customer_name" ON "public"."customer" USING btree ("c_w_id", "c_d_id", "c_last", "c_first");
-
-
-ALTER TABLE ONLY "public"."customer" ADD CONSTRAINT "customer_c_w_id_fkey" FOREIGN KEY (c_w_id, c_d_id) REFERENCES district(d_w_id, d_id) ON DELETE CASCADE NOT DEFERRABLE;
-
 -- 2023-02-13 09:23:41.667266+00

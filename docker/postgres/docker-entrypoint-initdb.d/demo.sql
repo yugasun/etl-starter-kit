@@ -1,13 +1,4 @@
-\c etl;
-drop table if exists public.test;
-
-create table public.test (
-    id bigint,
-    name varchar(128) not null,
-    date date,
-    is_active bool,
-    text bytea
-);
+\connect "etl";
 
 DROP TABLE IF EXISTS public.products;
 
