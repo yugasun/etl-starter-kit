@@ -1,26 +1,26 @@
 CREATE TABLE `products` (
   `id` int NOT NULL,
-  `productCode` varchar(15) NOT NULL,
-  `productName` varchar(70) NOT NULL,
-  `productLine` varchar(50) NOT NULL,
-  `productScale` varchar(10) NOT NULL,
-  `productVendor` varchar(50) NOT NULL,
-  `productDescription` varchar(256) NOT NULL,
-  `quantityInStock` int NOT NULL,
-  `buyPrice` decimal(10, 2) NOT NULL,
+  `product_code` varchar(15) NOT NULL,
+  `product_name` varchar(70) NOT NULL,
+  `product_line` varchar(50) NOT NULL,
+  `product_scale` varchar(10) NOT NULL,
+  `product_vendor` varchar(50) NOT NULL,
+  `product_description` varchar(256) NOT NULL,
+  `quantity_in_stock` int NOT NULL,
+  `buy_price` decimal(10, 2) NOT NULL,
   `MSRP` decimal(10, 2) NOT NULL
 ) DISTRIBUTED BY HASH(id);
 
 CREATE TABLE IF NOT EXISTS products (
   id INT,
-  productCode STRING,
-  productName STRING,
-  productLine STRING,
-  productScale STRING,
-  productVendor STRING,
-  productDescription STRING,
-  quantityInStock INT,
-  buyPrice DECIMAL(10, 2),
+  product_code STRING,
+  product_name STRING,
+  product_line STRING,
+  product_scale STRING,
+  product_vendor STRING,
+  product_description STRING,
+  quantity_in_stock INT,
+  buy_price DECIMAL(10, 2),
   MSRP DECIMAL(10, 2)
 )
 DISTRIBUTED BY HASH(id)

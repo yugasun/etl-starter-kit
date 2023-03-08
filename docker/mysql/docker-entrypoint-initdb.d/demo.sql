@@ -144,21 +144,21 @@ VALUES
     'EMEA'
   );
 
-DROP TABLE IF EXISTS `productlines`;
+DROP TABLE IF EXISTS `product_lines`;
 
-CREATE TABLE `productlines` (
-  `productLine` varchar(50) NOT NULL,
+CREATE TABLE `product_lines` (
+  `product_line` varchar(50) NOT NULL,
   `textDescription` varchar(4000) DEFAULT NULL,
   `htmlDescription` mediumtext,
   `image` mediumblob,
-  PRIMARY KEY (`productLine`)
+  PRIMARY KEY (`product_line`)
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1;
 
-TRUNCATE `productlines`;
+TRUNCATE `product_lines`;
 
 INSERT INTO
-  `productlines` (
-    `productLine`,
+  `product_lines` (
+    `product_line`,
     `textDescription`,
     `htmlDescription`,
     `image`
@@ -207,22 +207,21 @@ VALUES
     NULL
   );
 
+
 DROP TABLE IF EXISTS `products`;
 
 CREATE TABLE `products` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `productCode` varchar(15) NOT NULL,
-  `productName` varchar(70) NOT NULL,
-  `productLine` varchar(50) NOT NULL,
-  `productScale` varchar(10) NOT NULL,
-  `productVendor` varchar(50) NOT NULL,
-  `productDescription` text NOT NULL,
-  `quantityInStock` smallint NOT NULL,
-  `buyPrice` decimal(10, 2) NOT NULL,
-  `MSRP` decimal(10, 2) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `productLine` (`productLine`),
-  CONSTRAINT `products_ibfk_1` FOREIGN KEY (`productLine`) REFERENCES `productlines` (`productLine`)
+  `product_code` varchar(15),
+  `product_name` varchar(70),
+  `product_line` varchar(50),
+  `product_scale` varchar(10),
+  `product_vendor` varchar(50),
+  `product_description` text,
+  `quantity_in_stock` smallint,
+  `buy_price` decimal(10, 2),
+  `msrp` decimal(10, 2),
+  PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1;
 
 TRUNCATE `products`;
@@ -230,15 +229,15 @@ TRUNCATE `products`;
 INSERT INTO
   `products` (
     `id`,
-    `productCode`,
-    `productName`,
-    `productLine`,
-    `productScale`,
-    `productVendor`,
-    `productDescription`,
-    `quantityInStock`,
-    `buyPrice`,
-    `MSRP`
+    `product_code`,
+    `product_name`,
+    `product_line`,
+    `product_scale`,
+    `product_vendor`,
+    `product_description`,
+    `quantity_in_stock`,
+    `buy_price`,
+    `msrp`
   )
 VALUES
   (
@@ -1566,14 +1565,14 @@ DROP TABLE IF EXISTS `products_bak`;
 
 CREATE TABLE `products_bak` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `productCode` varchar(15) NOT NULL,
-  `productName` varchar(70) NOT NULL,
-  `productLine` varchar(50) NOT NULL,
-  `productScale` varchar(10) NOT NULL,
-  `productVendor` varchar(50) NOT NULL,
-  `productDescription` text NOT NULL,
-  `quantityInStock` smallint NOT NULL,
-  `buyPrice` decimal(10, 2) NOT NULL,
-  `MSRP` decimal(10, 2) NOT NULL,
+  `product_code` varchar(15),
+  `product_name` varchar(70),
+  `product_line` varchar(50),
+  `product_scale` varchar(10),
+  `product_vendor` varchar(50),
+  `product_description` text,
+  `quantity_in_stock` smallint,
+  `buy_price` decimal(10, 2),
+  `msrp` decimal(10, 2),
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1;

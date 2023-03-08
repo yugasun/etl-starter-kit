@@ -8,7 +8,7 @@
             "connection": [
               {
                 "querySql": [
-                  "SELECT `id`,`productCode`,`productName`,`productLine`,`productScale`,`productVendor`,`productDescription`,`quantityInStock`,`buyPrice`,`MSRP` FROM products "
+                  "SELECT `id`,`product_code`,`product_name`,`product_line`,`product_scale`,`product_vendor`,`product_description`,`quantity_in_stock`,`buy_price`,`MSRP` FROM products "
                 ],
                 "jdbcUrl": [
                   "jdbc:mysql://127.0.0.1:3306/etl?useUnicode=yes&useCursorFetch=true&useSSL=false&serverTimezone=Asia%2FShanghai&useCompression=true&characterEncoding=utf8"
@@ -27,14 +27,14 @@
             "database": "sr_hub",
             "column": [
               "id",
-              "productCode",
-              "productName",
-              "productLine",
-              "productScale",
-              "productVendor",
-              "productDescription",
-              "quantityInStock",
-              "buyPrice",
+              "product_code",
+              "product_name",
+              "product_line",
+              "product_scale",
+              "product_vendor",
+              "product_description",
+              "quantity_in_stock",
+              "buy_price",
               "MSRP"
             ],
             "preSql": [],

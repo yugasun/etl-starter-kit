@@ -4,16 +4,16 @@ DROP TABLE IF EXISTS public.products;
 
 CREATE TABLE public.products (
     id SERIAL NOT NULL,
-    productCode varchar(15) NOT NULL,
-    productName varchar(70) NOT NULL,
-    productLine varchar(50),
-    productScale varchar(10),
-    productCount varchar(10),
-    productBase varchar(10),
-    productVendor varchar(50),
-    productDescription text,
-    quantityInStock smallint,
-    buyPrice decimal(10, 2),
-    MSRP decimal(10, 2),
+    product_code varchar(15) NOT NULL,
+    product_name varchar(70) NOT NULL,
+    product_line varchar(50),
+    product_scale varchar(10),
+    product_count varchar(10),
+    product_base varchar(10),
+    product_vendor varchar(50),
+    product_description text,
+    quantity_in_stock smallint,
+    buy_price decimal(10, 2),
+    msrp decimal(10, 2),
     PRIMARY KEY (id)
 );

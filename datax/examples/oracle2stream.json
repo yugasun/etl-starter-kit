@@ -1,0 +1,62 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 1
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "oraclereader",
+          "parameter": {
+            "splitPk": "id",
+            "where": "< 3",
+            "column": [
+              "id",
+              "product_code",
+              "product_name",
+              "product_line",
+              "product_scale",
+              "product_vendor",
+              "product_description",
+              "quantity_in_stock",
+              "buy_price",
+              "msrp"
+            ],
+            "connection": [
+              {
+                "jdbcUrl": [
+                  "jdbc:oracle:thin:@127.0.0.1:1521:XE"
+                ],
+                "table": [
+                  "products"
+                ]
+              }
+            ],
+            "password": "Admin@123",
+            "username": "system"
+          }
+        },
+        "writer": {
+          "name": "streamwriter",
+          "parameter": {
+            "print": true
+          }
+        },
+        "transformer": [
+          {
+            "name": "dx_substr",
+            "parameter": {
+              "columnIndex": 1,
+              "paras": [
+                "4",
+                "4"
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

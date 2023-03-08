@@ -593,7 +593,7 @@
       <field_name>new_msrp</field_name>
       <calc_type>PERCENT_1</calc_type>
       <field_a>MSRP</field_a>
-      <field_b>quantityInStock</field_b>
+      <field_b>quantity_in_stock</field_b>
       <field_c/>
       <value_type>Number</value_type>
       <value_length>-1</value_length>
@@ -633,8 +633,8 @@
     <concat_errors>N</concat_errors>
     <concat_separator>|</concat_separator>
     <validator_field>
-      <name>productLine</name>
-      <validation_name>productLine</validation_name>
+      <name>product_line</name>
+      <validation_name>product_line</validation_name>
       <max_length/>
       <min_length/>
       <null_allowed>Y</null_allowed>
@@ -654,7 +654,7 @@
       <regular_expression/>
       <regular_expression_not_allowed/>
       <error_code>01</error_code>
-      <error_description>Error no productLine</error_description>
+      <error_description>Error no product_line</error_description>
       <is_sourcing_values>N</is_sourcing_values>
       <sourcing_step/>
       <sourcing_field/>
@@ -687,8 +687,8 @@
     </partitioning>
     <fields>
       <field>
-        <in_stream_name>productCode</in_stream_name>
-        <out_stream_name>newProductCode</out_stream_name>
+        <in_stream_name>product_code</in_stream_name>
+        <out_stream_name>newproduct_code</out_stream_name>
         <use_regex>no</use_regex>
         <replace_string>_</replace_string>
         <replace_by_string>/</replace_by_string>
@@ -724,7 +724,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <splitfield>productScale</splitfield>
+    <splitfield>product_scale</splitfield>
     <delimiter>:</delimiter>
     <enclosure/>
     <fields>
@@ -819,11 +819,11 @@
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>productCode</name>
+        <name>product_code</name>
         <length>15</length>
         <precision>-1</precision>
         <origin>Table input</origin>
-        <comments>productCode</comments>
+        <comments>product_code</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
         <grouping_symbol>,</grouping_symbol>
@@ -842,11 +842,11 @@
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>productName</name>
+        <name>product_name</name>
         <length>70</length>
         <precision>-1</precision>
         <origin>Table input</origin>
-        <comments>productName</comments>
+        <comments>product_name</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
         <grouping_symbol>,</grouping_symbol>
@@ -865,11 +865,11 @@
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>productLine</name>
+        <name>product_line</name>
         <length>50</length>
         <precision>-1</precision>
         <origin>Table input</origin>
-        <comments>productLine</comments>
+        <comments>product_line</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
         <grouping_symbol>,</grouping_symbol>
@@ -888,11 +888,11 @@
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>productScale</name>
+        <name>product_scale</name>
         <length>10</length>
         <precision>-1</precision>
         <origin>Table input</origin>
-        <comments>productScale</comments>
+        <comments>product_scale</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
         <grouping_symbol>,</grouping_symbol>
@@ -911,11 +911,11 @@
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>productVendor</name>
+        <name>product_vendor</name>
         <length>50</length>
         <precision>-1</precision>
         <origin>Table input</origin>
-        <comments>productVendor</comments>
+        <comments>product_vendor</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
         <grouping_symbol>,</grouping_symbol>
@@ -934,11 +934,11 @@
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>productDescription</name>
+        <name>product_description</name>
         <length>65535</length>
         <precision>-1</precision>
         <origin>Table input</origin>
-        <comments>productDescription</comments>
+        <comments>product_description</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
         <grouping_symbol>,</grouping_symbol>
@@ -957,11 +957,11 @@
       <value-meta>
         <type>Integer</type>
         <storagetype>normal</storagetype>
-        <name>quantityInStock</name>
+        <name>quantity_in_stock</name>
         <length>4</length>
         <precision>0</precision>
         <origin>Table input</origin>
-        <comments>quantityInStock</comments>
+        <comments>quantity_in_stock</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
         <grouping_symbol>,</grouping_symbol>
@@ -980,11 +980,11 @@
       <value-meta>
         <type>Number</type>
         <storagetype>normal</storagetype>
-        <name>buyPrice</name>
+        <name>buy_price</name>
         <length>10</length>
         <precision>2</precision>
         <origin>Table input</origin>
-        <comments>buyPrice</comments>
+        <comments>buy_price</comments>
         <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
         <grouping_symbol>,</grouping_symbol>
@@ -1072,16 +1072,16 @@
         <stream_name>id</stream_name>
       </field>
       <field>
-        <column_name>productCode</column_name>
-        <stream_name>newProductCode</stream_name>
+        <column_name>product_code</column_name>
+        <stream_name>newproduct_code</stream_name>
       </field>
       <field>
-        <column_name>productName</column_name>
-        <stream_name>productName</stream_name>
+        <column_name>product_name</column_name>
+        <stream_name>product_name</stream_name>
       </field>
       <field>
-        <column_name>productLine</column_name>
-        <stream_name>productLine</stream_name>
+        <column_name>product_line</column_name>
+        <stream_name>product_line</stream_name>
       </field>
       <field>
         <column_name>productCount</column_name>
@@ -1092,20 +1092,20 @@
         <stream_name>scale_base</stream_name>
       </field>
       <field>
-        <column_name>productVendor</column_name>
-        <stream_name>productVendor</stream_name>
+        <column_name>product_vendor</column_name>
+        <stream_name>product_vendor</stream_name>
       </field>
       <field>
-        <column_name>productDescription</column_name>
-        <stream_name>productDescription</stream_name>
+        <column_name>product_description</column_name>
+        <stream_name>product_description</stream_name>
       </field>
       <field>
-        <column_name>quantityInStock</column_name>
-        <stream_name>quantityInStock</stream_name>
+        <column_name>quantity_in_stock</column_name>
+        <stream_name>quantity_in_stock</stream_name>
       </field>
       <field>
-        <column_name>buyPrice</column_name>
-        <stream_name>buyPrice</stream_name>
+        <column_name>buy_price</column_name>
+        <stream_name>buy_price</stream_name>
       </field>
       <field>
         <column_name>MSRP</column_name>
