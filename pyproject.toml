@@ -1,0 +1,16 @@
+[project]
+name = "etl-starter-kit"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "apache-airflow-providers-postgres>=6.1.1",
+    "apache-airflow>=2.10.5",
+    "duckdb>=1.2.1",
+    "graphviz>=0.20.3",
+    "apache-airflow-providers-common-sql>=1.24.0",
+    "mysql-connector-python>=9.2.0",
+    "mysqlclient>=2.2.7",
+    "aiomysql>=0.2.0",
+]

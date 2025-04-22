@@ -1,0 +1,43 @@
+# Defining the runtime environment
+env {
+  parallelism = 4
+  job.mode = "BATCH"
+}
+source{
+    Jdbc {
+        url = "jdbc:postgresql://localhost:5432"
+        driver = "org.postgresql.Driver"
+        user = "test"
+        password = "test"
+        database = "test"
+        table_list = [
+            {
+                table_path = "public.assets"
+                query = "select * from public.assets"
+            }
+        ]
+    }
+}
+
+transform {
+    # If you would like to get more information about how to configure seatunnel and see full list of transform plugins,
+    # please go to https://seatunnel.apache.org/docs/transform-v2/sql
+}
+
+sink {
+    jdbc {
+        # if you would use json or jsonb type insert please add jdbc url stringtype=unspecified option
+        url = "jdbc:mysql://localhost:3306/test"
+        driver = "com.mysql.cj.jdbc.Driver"
+        user = "root"
+        password = "test"
+        generate_sink_sql = true
+        database = "sink"
+        table = "${table_name}"
+        properties {
+            useSSL=false
+            rewriteBatchedStatements=true
+        }
+    }
+
+}
