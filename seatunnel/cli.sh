@@ -1,12 +1,12 @@
 #!/bin/bash
 
-export version="2.3.8"
+export version="2.3.10"
 pwd_path=$(pwd)
 
 export SEATUNNEL_HOME="$pwd_path/apache-seatunnel-${version}"
 
 # md5 of the archive
-expected_md5="ddf447746c2760b2a6bf4fb4de89ceea"
+expected_md5="7c25b64d70a86796e92158b12a4b259d"
 archive_name="apache-seatunnel-${version}-bin.tar.gz"
 
 install() {
@@ -40,6 +40,10 @@ install() {
 }
 
 start() {
+    if ! command -v java >/dev/null 2>&1; then
+        echo "Error: Java is not installed or not in PATH. Please install Java before starting SeaTunnel."
+        exit 1
+    fi
     echo "Starting SeaTunnel version $version..."
         
     # Start The SeaTunnel Engine Server Node
