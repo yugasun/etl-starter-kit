@@ -5,64 +5,84 @@ pwd_path=$(pwd)
 
 export SEATUNNEL_HOME="$pwd_path/apache-seatunnel-${version}"
 
+# md5 of the archive
+expected_md5="ddf447746c2760b2a6bf4fb4de89ceea"
+archive_name="apache-seatunnel-${version}-bin.tar.gz"
+
 install() {
-    echo "Installing Seatunnel version $version..."
-    wget "https://archive.apache.org/dist/seatunnel/${version}/apache-seatunnel-${version}-bin.tar.gz"
-    
-    # it will extract to the $SEATUNNEL_HOME directory
-    tar -xzvf "apache-seatunnel-${version}-bin.tar.gz"
-    # rm "apache-seatunnel-${version}-bin.tar.gz"
-    echo "Seatunnel version $version installed successfully."
+    echo "Installing SeaTunnel version $version..."
+
+    if [ -f "$archive_name" ]; then
+        echo "Found existing $archive_name in current directory."
+        current_md5=$(md5sum "$archive_name" | awk '{print $1}')
+        if [ "$current_md5" = "$expected_md5" ]; then
+            echo "MD5 matches expected ($expected_md5). Skipping download."
+        else
+            echo "Warning: existing file MD5 is $current_md5, but expected is $expected_md5."
+            read -p "Do you want to use the existing file anyway? [y/N]: " answer
+            case "$answer" in
+                [Yy]* ) echo "Proceeding with existing file despite MD5 mismatch." ;;
+                * )
+                    echo "Re-downloading $archive_name..."
+                    rm -f "$archive_name"
+                    wget "https://archive.apache.org/dist/seatunnel/${version}/${archive_name}"
+                    ;;
+            esac
+        fi
+    else
+        echo "No existing $archive_name found. Downloading..."
+        wget "https://archive.apache.org/dist/seatunnel/${version}/${archive_name}"
+    fi
+
+    # unpack the archive
+    tar -xzvf "$archive_name"
+    echo "SeaTunnel version $version installed successfully in $SEATUNNEL_HOME."
 }
 
 start() {
-    echo "Starting Seatunnel version $version..."
-    
+    echo "Starting SeaTunnel version $version..."
+        
     # Start The SeaTunnel Engine Server Node
     # It can be started with the -d parameter through the daemon mode
-    mkdir -p $SEATUNNEL_HOME/logs
-    $SEATUNNEL_HOME/bin/seatunnel-cluster.sh -d
-    echo "Seatunnel version $version started successfully."
+    mkdir -p "$SEATUNNEL_HOME/logs"
+    "$SEATUNNEL_HOME/bin/seatunnel-cluster.sh" -d
+    echo "SeaTunnel version $version started successfully."
     echo "Log file: $SEATUNNEL_HOME/logs/seatunnel-engine-server.log"
 }
 
 stop() {
-    echo "Stopping Seatunnel version $version..."
-    
+    echo "Stopping SeaTunnel version $version..."
+
     # Stop The SeaTunnel Engine Server Node
-    $SEATUNNEL_HOME/bin/stop-seatunnel-cluster.sh
-    echo "Seatunnel version $version stopped successfully."
+    "$SEATUNNEL_HOME/bin/stop-seatunnel-cluster.sh"
+    echo "SeaTunnel version $version stopped successfully."
 }
 
 run() {
-    echo "Running Seatunnel version $version..."
+    echo "Running SeaTunnel version $version..."
     # get config file path by --config
     config_path="$1"
     absolute_path=$(realpath "$pwd_path/$config_path")
     echo "Config file path: $absolute_path"
-    
+
     if [ ! -f "$config_path" ]; then
         echo "Config file not found: $config_path"
         exit 1
     fi
-    $SEATUNNEL_HOME/bin/seatunnel.sh --config $absolute_path
+    "$SEATUNNEL_HOME/bin/seatunnel.sh" --config "$absolute_path"
 }
 
-# get command by arguments
 command="$1"
 
-# check command
-if [ "$command" = "install" ]; then
-    install
-    elif [ "$command" = "start" ]; then
-    start
-    elif [ "$command" = "stop" ]; then
-    stop
-    elif [ "$command" = "run" ]; then
-    run "$2"
-else
-    echo "Invalid command: $command"
-    echo "Usage: $0 {install|start|stop|run <config_file>}"
-    echo "Example: $0 run ./jobs/v2.batch.config.template"
-    exit 1
-fi
+case "$command" in
+    install) install ;;
+    start)   start ;;
+    stop)    stop ;;
+    run)     run "$2" ;;
+    *)
+        echo "Invalid command: $command"
+        echo "Usage: $0 {install|start|stop|run <config_file>}"
+        echo "Example: $0 run ./jobs/v2.batch.config.template"
+        exit 1
+        ;;
+esac
